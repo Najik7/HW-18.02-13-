@@ -68,7 +68,7 @@ namespace HW_18._02___13_
             //Task task3 = Task.Run(() => Console.WriteLine("Task3 выполнин"));
 
 
-
+             
 
 
             //Многопоточность
