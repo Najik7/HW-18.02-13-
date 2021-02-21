@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace HW_18._02___13_
 {
@@ -30,32 +32,83 @@ namespace HW_18._02___13_
 
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WindowLeft = Console.WindowTop = 0;
-            Console.WindowHeight = Console.BufferHeight = Console.LargestWindowHeight;
-            Console.WindowWidth = Console.BufferWidth = Console.LargestWindowWidth;
+            //Console.ForegroundColor = ConsoleColor.Green;
+            //Console.WindowLeft = Console.WindowTop = 0;
+            //Console.WindowHeight = Console.BufferHeight = Console.LargestWindowHeight;
+            //Console.WindowWidth = Console.BufferWidth = Console.LargestWindowWidth;
 
-            Console.CursorVisible = false;
+            //Console.CursorVisible = false;
 
-            int width, height;
-            // установить массив начальных значений y
-            int[] y;
+            //int width, height;
+            //// установить массив начальных значений y
+            //int[] y;
 
-            // ширина была 209, высота 81
-            // настроить экран и начальные условия y
-            Initialize(out width, out height, out y);
+            //// ширина была 209, высота 81
+            //// настроить экран и начальные условия y
+            //Initialize(out width, out height, out y);
 
-            // сделать матричный эффект
-            // в каждом цикле все y увеличиваются на 1
-            while (true)
-                UpdateAllColumns(width, height, y);
+            //// сделать матричный эффект
+            //// в каждом цикле все y увеличиваются на 1
+            //while (true)
+            //    UpdateAllColumns(width, height, y);
+            // Матрица
+            //--------------------------------------------------------------------------------------------------------------------------------
+
+            //Асинхронность
+            Task task = new Task(Display);
+            task.Start();
+
+            Console.WriteLine("Завершение метода Main");
+
+
+            //Параллельное программирование:
+            //Task task1 = new Task(() => Console.WriteLine("Task1 выполнен"));
+            //task1.Start();
+            //Task task2 = Task.Factory.StartNew(() => Console.WriteLine("Task2 выполнин"));
+            //Task task3 = Task.Run(() => Console.WriteLine("Task3 выполнин"));
 
 
 
 
+
+            //Многопоточность
+            //Создаем новый поток
+            //Thread thread = new Thread(new ThreadStart(multithreaded));
+            //thread.Start();
+            //for (int i = 1; i < 5; i++)
+            //{
+            //    Console.WriteLine("Основной поток");
+            //    Console.WriteLine(i * i);
+            //    Thread.Sleep(400);
+            //}
+
+            Console.ReadLine();
         }
 
 
+        //Асинхронность
+        static void Display()
+        {
+            Console.WriteLine("Начало работы метода Display");
+
+            Console.WriteLine("Завершение работы метода Display");
+        }
+
+
+        //Многопоточность
+        public static void multithreaded()
+        {
+            for (int i = 1; i < 5; i++)
+            {
+                Console.WriteLine("Второй поток");
+                Console.WriteLine(i * i);
+                Thread.Sleep(500);
+            }
+        }
+
+
+
+        // Матрица
         private static void UpdateAllColumns(int width, int height, int[] y)
         {
             int x;
